@@ -3,6 +3,7 @@ import "../styles/home.css";
 import { Container, Row, Col } from "reactstrap";
 import heroImage from "../assets/images/hero-img01.jpg";
 import heroImage2 from "../assets/images/hero-img02.jpg";
+import Video from "../assets/images/Video.mp4";
 import worldImg from "../assets/images/world.png";
 import Subtitle from "../shared/Subtitle";
 import SearchBar from "../shared/SearchBar";
@@ -36,8 +37,8 @@ const Home = () => {
             </div>
             </Col>
             <Col lg="2">
-            <div className="hero__img-box mt-4">
-                <img src={heroImage2} alt="" />
+            <div className="hero__img-box mt-4"  >
+                <video src={Video} alt="" controls />
             </div>
             </Col>
             <Col lg="2">
