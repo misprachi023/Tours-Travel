@@ -6,6 +6,7 @@
 .tour__card{
     border: none !important;
     box-shadow: rgba(0, 0, 0,0.2) 0px 18px 50px -10px;
+    padding: .6rem;
 }
 
 .tour__img{
@@ -45,7 +46,7 @@
 }
 
 .tour__title{
-    padding-left:0.3rem ;
+   
     margin-top: 1rem;
     font-size: 1.1rem;
     cursor: pointer;
@@ -63,7 +64,7 @@
 
 .card__bottom h5{
     font-size: 1rem;
-    padding-left: 0.3rem;
+  
     color: var(--secondary-color);
     font-weight: 700;
 }
