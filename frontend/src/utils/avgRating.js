@@ -1,10 +1,10 @@
 const calculateAvgRating = reviews => {
-    reviews?.reduce((acc, item) => item.rating + acc, 0) 
-      totalRating === 0
+   const totalRating = reviews?.reduce((acc, item) => item.rating + acc, 0) 
+     const avgRating = totalRating === 0
         ? ""
         : totalRating === 1
         ? totalRating
-        : totalRating / reviews?.length;
+        : (totalRating / reviews?.length).toFixed(1);
 
     return {
         totalRating,
