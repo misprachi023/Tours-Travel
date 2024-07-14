@@ -106,10 +106,7 @@ const tours = [
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
-      {
-        name: "jhon doe",
-        rating: 4.6,
-      },
+      
     ],
     avgRating: 4.5,
     photo: tourImg06,
@@ -124,10 +121,7 @@ const tours = [
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
-      {
-        name: "jhon doe",
-        rating: 4.6,
-      },
+      
     ],
     avgRating: 4.5,
     photo: tourImg07,
@@ -142,10 +136,7 @@ const tours = [
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
-      {
-        name: "jhon doe",
-        rating: 4.6,
-      },
+    
     ],
     avgRating: 4.5,
     photo: tourImg03,

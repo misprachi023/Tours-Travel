@@ -1,4 +1,8 @@
 import React from "react";
+import ServiceList from "../services/serviceList";
+import FeatureTourList from "../Featured-tours/FeatureTourList";
+import {ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 import "../styles/home.css";
 import { Container, Row, Col } from "reactstrap";
 import heroImage from "../assets/images/hero-img01.jpg";
@@ -47,9 +51,40 @@ const Home = () => {
             </div>
             </Col>
             <SearchBar/>
+            <ToastContainer />
           </Row>
         </Container>
       </section>
+
+
+
+
+
+      <section>
+        <Container>
+          <Row>
+            <Col lg="3">
+              <h5 className="services__subtitle">What we serve</h5>
+              <h2 className="services__title">We offer our best services</h2>
+            </Col>
+            <ServiceList/>
+          </Row>
+        </Container>
+      </section>
+
+
+     <section>
+      <Container>
+        <Row>
+          <Col lg="12" className="mb-5">
+            <Subtitle Subtitle={"Explore"} />
+            <h2 className="featured__tour-title" >Our Featured Tours</h2>
+          </Col>
+          <FeatureTourList/>
+        </Row>
+      </Container>
+     </section>
+
     </>
   );
 };

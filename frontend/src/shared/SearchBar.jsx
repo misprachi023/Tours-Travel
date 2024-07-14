@@ -1,7 +1,23 @@
-import React from "react";
+import React , { useRef }  from "react";
+import { toast } from "react-toastify";
 import "./search-bar.css";
-import { Col, Form, FormGroup } from "reactstrap";
+import { Col, Form, FormGroup, Toast, ToastBody } from "reactstrap";
 const SearchBar = () => {
+
+  const locationRef =useRef("");
+  const distanceRef = useRef(0);
+  const maxGroupSizeRef = useRef(0);
+
+  const searchHandler = () => {
+    const location= locationRef.current.value;
+    const distance = distanceRef.current.value;
+    const maxGroupSize = maxGroupSizeRef.current.value;
+
+    if(distance === "" || location === "" || maxGroupSize === ""){
+      toast.error("All fields are required");
+    }
+    
+  };
   return (
     <Col lg="12">
       <div className="search__bar">
@@ -12,7 +28,7 @@ const SearchBar = () => {
             </span>
             <div>
               <h6>Location</h6>
-              <input type="text" placeholder="Where are you Going?" />
+              <input type="text" placeholder="Where are you Going?"  ref={locationRef}/>
             </div>
           </FormGroup>
           <FormGroup className="d-flex gap-3 form__group form__group-first">
@@ -21,7 +37,7 @@ const SearchBar = () => {
             </span>
             <div>
               <h6>Distance</h6>
-              <input type="number" placeholder="Disatnce k/m" />
+              <input type="number" placeholder="Disatnce k/m" ref={distanceRef} />
             </div>
           </FormGroup>
           <FormGroup className="d-flex gap-3 form__group form__group-last">
@@ -30,10 +46,10 @@ const SearchBar = () => {
             </span>
             <div>
               <h6>Max People</h6>
-              <input type="number" placeholder="0" />
+              <input type="number" placeholder="0" ref={maxGroupSizeRef} />
             </div>
           </FormGroup>
-          <span className="search__icon" type="submit">
+          <span className="search__icon" type="submit" onClick={searchHandler}>
             <i class="ri-search-line"> </i>
           </span>
         </Form>
