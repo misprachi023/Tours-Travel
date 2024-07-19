@@ -8,7 +8,11 @@ export const createTour = async (req, res) => {
     const savedTour = await newTour.save();
     res
       .status(200)
-      .json({ success: true, message: "Successfully created", data: savedTour });
+      .json({
+        success: true,
+        message: "Successfully created",
+        data: savedTour,
+      });
   } catch (error) {
     res
       .status(500)
@@ -21,10 +25,18 @@ export const updateTour = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const updatedTour = await Tour.findByIdAndUpdate(id, { $set: req.body }, { new: true });
+    const updatedTour = await Tour.findByIdAndUpdate(
+      id,
+      { $set: req.body },
+      { new: true }
+    );
     res
       .status(200)
-      .json({ success: true, message: "Successfully updated", data: updatedTour });
+      .json({
+        success: true,
+        message: "Successfully updated",
+        data: updatedTour,
+      });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed to update" });
   }
@@ -36,23 +48,9 @@ export const deleteTour = async (req, res) => {
 
   try {
     await Tour.findByIdAndDelete(id);
-    res
-      .status(200)
-      .json({ success: true, message: "Successfully deleted" });
+    res.status(200).json({ success: true, message: "Successfully deleted" });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed to delete" });
-  }
-};
-
-// Get all tours
-export const getAllTour = async (req, res) => {
-  try {
-    const tours = await Tour.find();
-    res
-      .status(200)
-      .json({ success: true, message: "Successfully retrieved", data: tours });
-  } catch (err) {
-    res.status(500).json({ success: false, message: "Failed to retrieve" });
   }
 };
 
@@ -72,5 +70,26 @@ export const getSingleTour = async (req, res) => {
       .json({ success: true, message: "Successfully retrieved", data: tour });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed to retrieve" });
+  }
+};
+
+// Get all tours
+export const getAllTour = async (req, res) => {
+  const page = parseInt(req.query.page);
+  console.log(page);
+  try {
+    const tours = await Tour.find({})
+      .skip(page * 8)
+      .limit(8);
+    res
+      .status(200)
+      .json({
+        success: true,
+        count: tours.length,
+        message: "Successfully",
+        data: tours,
+      });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Failed" });
   }
 };
