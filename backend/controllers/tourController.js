@@ -6,13 +6,11 @@ export const createTour = async (req, res) => {
 
   try {
     const savedTour = await newTour.save();
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Successfully created",
-        data: savedTour,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Successfully created",
+      data: savedTour,
+    });
   } catch (error) {
     res
       .status(500)
@@ -30,13 +28,11 @@ export const updateTour = async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Successfully updated",
-        data: updatedTour,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Successfully updated",
+      data: updatedTour,
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed to update" });
   }
@@ -81,15 +77,59 @@ export const getAllTour = async (req, res) => {
     const tours = await Tour.find({})
       .skip(page * 8)
       .limit(8);
-    res
-      .status(200)
-      .json({
-        success: true,
-        count: tours.length,
-        message: "Successfully",
-        data: tours,
-      });
+    res.status(200).json({
+      success: true,
+      count: tours.length,
+      message: "Successfully",
+      data: tours,
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: "Failed" });
+  }
+};
+
+export const getTourBySearch = async (req, res) => {
+  const city = new RegExp(req.query.city, "i");
+  const distance = parseInt(req.query.distance);
+  const maxGroupSize = parseInt(req.query.maxGroupSize);
+
+  try {
+    const tours = await Tour.find({
+      city,
+      distance: { $gte: distance },
+      maxGroupSize: { $gte: maxGroupSize },
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully",
+      data: tours,
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Failed" });
+  }
+};
+
+export const getFeaturedTour = async (req, res) => {
+  const page = parseInt(req.query.page);
+  console.log(page);
+  try {
+    const tours = await Tour.find({ featured: true }).limit(8);
+    res.status(200).json({
+      success: true,
+      count: tours.length,
+      message: "Successfully",
+      data: tours,
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Failed" });
+  }
+};
+export const getTourCount = async (req, res) => {
+  try {
+    const tourCount = await Tour.estimatedDocumentCount();
+    res.status(200).json({ success: true, data: tourCount });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Failed to fetch" });
   }
 };
