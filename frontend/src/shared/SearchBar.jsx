@@ -1,21 +1,35 @@
 import React , { useRef }  from "react";
 import { toast } from "react-toastify";
 import "./search-bar.css";
-import { Col, Form, FormGroup, Toast, ToastBody } from "reactstrap";
+import { Col, Form, FormGroup} from "reactstrap";
+import { BASE_URL } from "../utils/config";
+import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
 
   const locationRef =useRef("");
   const distanceRef = useRef(0);
   const maxGroupSizeRef = useRef(0);
-
-  const searchHandler = () => {
+  const navigate = useNavigate();
+  const searchHandler = async() => {
     const location= locationRef.current.value;
     const distance = distanceRef.current.value;
     const maxGroupSize = maxGroupSizeRef.current.value;
 
     if(distance === "" || location === "" || maxGroupSize === ""){
-      toast.error("All fields are required");
+      toast.error("All fields are required!");
     }
+
+    const res= await fetch(`${BASE_URL}/tours/search/getTourBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`);
+
+    if(!res.ok) alert("Something went wrong!");
+
+    const result = await res.json();
+    navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`);
+  
+   
+    // if(result.length > 0){
+    //   navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`);
+    // }
     
   };
   return (
