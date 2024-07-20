@@ -49,7 +49,7 @@ export const login = async (req, res) => {
     );
 
     res
-      .cookie("access_token", token, {
+      .cookie("accessToken", token, {
         httpOnly: true,
         expires: token.expiresIn,
       })

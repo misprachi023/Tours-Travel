@@ -5,7 +5,7 @@ const bookingSchema = new mongoose.Schema(
     userId: {
       type: String,
     },
-    username: {
+    userEmail: {
       type: String,
     },
     tourName: {
@@ -26,7 +26,7 @@ const bookingSchema = new mongoose.Schema(
     },
     bookAt: {
       type: Date,
-    //   required: true,
+      required: true,
     },
   },
   { timestamps: true }
