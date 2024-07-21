@@ -6,7 +6,7 @@ import tourData from "../assets/data/tours";
 import TourCard from "../shared/TourCard";
 import SearchBar from "../shared/SearchBar";
 import NewsLetter from "../shared/NewsLetter";
-import useFetch from "../hooks/useFetch.jsx";
+import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 const Tours = () => {
   const [pageCount, setPageCount] = useState(0);

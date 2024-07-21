@@ -7,7 +7,7 @@ import calculateAvgRating from "../utils/avgRating";
 import avatar from "../assets/images/avatar.jpg";
 import Booking from "../components/Booking/Booking";
 import NewsLetter from "../shared/NewsLetter";
-import useFetch from "../hooks/useFetch.jsx";
+import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 
 const TourDetails = () => {

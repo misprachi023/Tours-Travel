@@ -24,14 +24,14 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await fetch(`${BASE_URL}/auth/register`, {
-        method: "POST",
+        method: "post",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(credentials),
-      });
+      })
       const result = await res.json();
-
+       console.log("RESULT",result);
       if (!res.ok) {
         alert(result.message);
       } else {
