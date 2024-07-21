@@ -21,16 +21,17 @@ const SearchBar = () => {
 
     const res= await fetch(`${BASE_URL}/tours/search/getTourBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`);
 
-    if(!res.ok) alert("Something went wrong!");
+    if(!res.ok) alert("Something went wrong");
 
     const result = await res.json();
-    navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`);
+    navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`, {state:result.data});
   
    
     // if(result.length > 0){
     //   navigate(`/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`);
     // }
     
+
   };
   return (
     <Col lg="12">
